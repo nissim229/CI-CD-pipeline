@@ -1,58 +1,20 @@
 pipeline {
     agent any
-
-    environment {
-        // Define environment variables here if needed
-        DEPLOY_ENV = 'staging'
-    }
-
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('Build') {
             steps {
                 echo 'Building...'
-                // For example, for a Java project:
-                // sh './gradlew build'
-                // Or Node.js:
-                // sh 'npm install'
             }
         }
-
         stage('Test') {
             steps {
-                echo 'Running tests...'
-                // Run your test command
-                // sh './gradlew test'
-                // Or Node.js:
-                // sh 'npm test'
+                echo 'Testing...'
             }
         }
-
         stage('Deploy') {
-            when {
-                branch 'main' // Only deploy from main branch
-            }
             steps {
-                echo "Deploying to ${DEPLOY_ENV}"
-                // Example deploy command:
-                // sh './scripts/deploy.sh'
-                // Or SCP to a server:
-                // sh 'scp -r ./dist user@server:/var/www/myapp'
+                echo 'Deploying...'
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Pipeline completed successfully.'
-        }
-        failure {
-            echo 'Pipeline failed.'
         }
     }
 }

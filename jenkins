@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Define environment variables here if needed
-        // DEPLOY_ENV = 'staging'
+        DEPLOY_ENV = 'staging'
     }
 
     stages {
@@ -38,7 +38,7 @@ pipeline {
                 branch 'main' // Only deploy from main branch
             }
             steps {
-                echo 'Deploying...'
+                echo "Deploying to ${DEPLOY_ENV}"
                 // Example deploy command:
                 // sh './scripts/deploy.sh'
                 // Or SCP to a server:
